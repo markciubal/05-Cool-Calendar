@@ -67,16 +67,17 @@ textarea {
 }
 
 .lds-ring div {
+  transition: all 1s;
   box-sizing: border-box;
   display: block;
   position: absolute;
   width: 64px;
   height: 64px;
   margin: 8px;
-  border: 8px solid #fff;
+  border: 8px solid #000000;
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #fff transparent transparent transparent;
+  border-color: #000000 transparent transparent transparent;
 }
 
 .lds-ring div:nth-child(1) {
