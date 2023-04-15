@@ -2,30 +2,31 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 
-// Loader
+// Loading spinner.
 window.onload = function() {
-  $('.loader').hide();
+  $('.loader').remove();
 }
 $(function () {
-  // Show the loader when the DOM is ready.
-  $('.lds-ring').show();
+  // Show the loading spinner when the DOM is ready.
+  $('.loader').show();
 
   // Set the time text immediately when the DOM is ready.
   function setTimeText() {
     let currentTime = dayjs().format();
     $('#currentDay').text(currentTime);
   }
+
   function buildDay() {
-    let amOrPm;
-    for (let i = 0; i <= 23; i++) {
-      if (i < 12) {
-        amOrPm = 'AM'
+    let zeroPrefix =  '';
+    for (let i = 9; i <= 17; i++) {
+      if (i <= 9){
+        zeroPrefix = '0';
       } else {
-        amOrPm = 'PM';
+        zeroPrefix =  '';
       }
       $('#hourblocks').append(`
       <div id="hour-${i}}" class="row time-block">
-        <div class="col-2 col-md-1 hour text-center py-3">${i + amOrPm}</div>
+        <div class="col-2 col-md-1 hour text-center py-3">${zeroPrefix + i + "00"}</div>
         <textarea class="col-8 col-md-10 description" rows="3"></textarea>
         <button class="btn saveBtn col-2 col-md-1" aria-label="save">
           <i class="fas fa-save" aria-hidden="true"></i>
@@ -91,5 +92,4 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
-  $('.loader').hide();
 });
