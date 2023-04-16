@@ -12,10 +12,11 @@ $(function () {
 
   // Set the time text immediately when the DOM is ready.
   function setTimeText() {
-    let currentTime = dayjs().format();
+    let currentTime = dayjs().format('dddd, MMMM DD, YYYY [@] HH:mm:ss');
     $('#currentDay').text(currentTime);
   }
 
+  /* Build out each day's HTML. */
   function buildDay() {
     let zeroPrefix =  '';
     for (let i = 9; i <= 17; i++) {
@@ -35,6 +36,15 @@ $(function () {
       `);
     }
   }
+  
+  // TODO: Add code to apply the past, present, or future class to each time
+  // block by comparing the id to the current hour. HINTS: How can the id
+  // attribute of each time-block be used to conditionally add or remove the
+  // past, present, and future classes? How can Day.js be used to get the
+  // current hour in 24-hour time?
+  //
+
+  // Function to update the styling of each time block.
   function updateStyling() {
     $('.time-block').children('.hour').each(function() {
       let thisHour = dayjs().hour();
@@ -54,9 +64,18 @@ $(function () {
       }
     });
   }
+  
+  // Build the day's calendar, set the time text, and update the styling.
   buildDay();
   setTimeText();
   updateStyling();
+  
+  // TODO: Add code to get any user input that was saved in localStorage and set
+  // the values of the corresponding textarea elements. HINT: How can the id
+  // attribute of each time-block be used to do this?
+  //
+  // TODO: Add code to display the current date in the header of the page.
+
   // Load in data if it is set for each hour.
   $('.time-block').children('.hour').each(function() {
     let siblingTextarea = $(this).siblings('textarea');
@@ -76,20 +95,11 @@ $(function () {
     let siblingTime = $(this).parent().attr('id');
     localStorage.setItem(siblingTime, siblingTextarea.val());
   })
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
+
+  
   // From https://stackoverflow.com/questions/2170923/whats-the-easiest-way-to-call-a-function-every-5-seconds-in-jquery
   window.setInterval(function(){
    updateStyling();
    setTimeText();
   }, 1000);
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
 });
