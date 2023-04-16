@@ -24,7 +24,10 @@ WHEN I click the save button for that timeblock
 WHEN I refresh the page
 ✅ THEN the saved events persist
 ```
+## Images
+![Initial Application Load](./assets/images/initial.jpg)
 
+![Showing the CSS for Present Time](./assets/images/css.jpg)
 ## Credits
 
 Coded by Mark Ciubal.
